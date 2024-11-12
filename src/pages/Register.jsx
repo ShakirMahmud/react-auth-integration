@@ -1,10 +1,12 @@
-import { AiOutlineEye } from "react-icons/ai"; 
-import { AiOutlineEyeInvisible } from "react-icons/ai"; 
-import React, { useState } from 'react';
+import { AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEyeInvisible } from "react-icons/ai";
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from "../providers/AuthProvider";
 
 const Register = () => {
 
+    const { createUser } = useContext(AuthContext);
     const [isClicked, setIsClicked] = useState(false);
 
     const handleRegister = e => {
@@ -14,6 +16,12 @@ const Register = () => {
         const name = e.target.name.value;
         console.log(email, password, name);
 
+        createUser(email, password)
+            .then((result) => {
+                console.log(result.user);
+            }).catch(err => {
+                console.error('Error', err.message);
+            })
     }
 
     return (
@@ -42,11 +50,11 @@ const Register = () => {
                                 <span className="text-lg font-semibold">Password</span>
                             </label>
                             <input type={isClicked ? 'text' : 'password'} placeholder="password" name='password' className="input input-bordered rounded-lg " required />
-                            <div onClick={()=>setIsClicked(!isClicked)} className="absolute hover:cursor-pointer right-4 top-[3.75rem] text-xl">
+                            <div onClick={() => setIsClicked(!isClicked)} className="absolute hover:cursor-pointer right-4 top-[3.75rem] text-xl">
                                 {
                                     isClicked ? <AiOutlineEye /> : <AiOutlineEyeInvisible />
                                 }
-                                
+
                             </div>
 
                         </div>
