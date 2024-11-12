@@ -1,9 +1,60 @@
-import React from 'react';
+import { AiOutlineEye } from "react-icons/ai"; 
+import { AiOutlineEyeInvisible } from "react-icons/ai"; 
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
+
+    const [isClicked, setIsClicked] = useState(false);
+
+    const handleLogin = e => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        console.log(email, password);
+
+    }
+
     return (
-        <div>
-            <h2>Login</h2>
+        <div className="hero  ">
+            <div className="hero-content flex-col ">
+                <div className="text-center lg:text-left">
+                    <h1 className="text-2xl font-bold">Login now!</h1>
+
+                </div>
+                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl rounded-lg">
+                    <form onSubmit={handleLogin} className="card-body">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="text-lg font-semibold">Email</span>
+                            </label>
+                            <input type="email" placeholder="email" name='email' className="input input-bordered rounded-lg " required />
+                        </div>
+                        <div className="form-control relative">
+                            <label className="label">
+                                <span className="text-lg font-semibold">Password</span>
+                            </label>
+                            <input type={isClicked ? 'text' : 'password'} placeholder="password" name='password' className="input input-bordered rounded-lg " required />
+                            <div onClick={()=>setIsClicked(!isClicked)} className="absolute hover:cursor-pointer right-4 top-[3.75rem] text-xl">
+                                {
+                                    isClicked ? <AiOutlineEye /> : <AiOutlineEyeInvisible />
+                                }
+                                
+                            </div>
+                            <label className="label">
+                                <Link className="label-text-alt link link-hover">Forgot password?</Link>
+                            </label>
+                        </div>
+                        <div className="form-control mt-6">
+                            <button className="btn btn-primary rounded-lg font-bold text-lg">Login</button>
+                        </div>
+                    </form>
+                    <div className="text-center mb-6 px-4">
+                        <p className='text-lg'>Don't have an account? <Link className="link link-hover" to='/register'>Create Now!</Link></p>
+                    </div>
+
+                </div>
+            </div>
         </div>
     );
 };

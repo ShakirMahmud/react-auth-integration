@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom';
 
 const Header = () => {
 
-    const links = <div className='flex lg:flex-row flex-col lg:gap-6 text-lg font-semibold'>
-        <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/login'>Login</NavLink></li>
-        <li><NavLink to='/register'>Register</NavLink></li>
+    const links = <div className='flex lg:flex-row flex-col lg:gap-6 text-lg font-semibold '>
+        <li><NavLink className='rounded-2xl' to='/'>Home</NavLink></li>
+        <li><NavLink className='rounded-2xl' to='/login'>Login</NavLink></li>
+        <li><NavLink className='rounded-2xl' to='/register'>Register</NavLink></li>
     </div>
 
     return (
@@ -29,19 +29,19 @@ const Header = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-2xl z-[1] mt-3 w-52 p-2 shadow">
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <NavLink to='/' className="btn btn-ghost text-2xl font-bold rounded-xl">React Auth Integration</NavLink>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal rounded-2xl px-1">
                     {links}
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                <a className="btn rounded-2xl">Button</a>
             </div>
         </div>
     );
