@@ -1,1 +1,1 @@
-# [Live Preview] (https://react-auth-integration.vercel.app/)
+# [Live Preview](https://react-auth-integration.vercel.app/)
