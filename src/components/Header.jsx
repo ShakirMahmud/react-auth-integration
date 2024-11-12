@@ -5,7 +5,7 @@ import { AuthContext } from '../providers/AuthProvider';
 const Header = () => {
 
     const {name} = useContext(AuthContext);
-    console.log(name);
+    // console.log(name);
 
     const links = <div className='flex lg:flex-row flex-col lg:gap-6 text-lg font-semibold '>
         <li><NavLink className='rounded-2xl' to='/'>Home</NavLink></li>

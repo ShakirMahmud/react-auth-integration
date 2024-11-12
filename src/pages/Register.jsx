@@ -19,7 +19,8 @@ const Register = () => {
         createUser(email, password)
             .then((result) => {
                 console.log(result.user);
-            }).catch(err => {
+            })
+            .catch(err => {
                 console.error('Error', err.message);
             })
     }
@@ -29,7 +30,6 @@ const Register = () => {
             <div className="hero-content flex-col ">
                 <div className="text-center lg:text-left">
                     <h1 className="text-2xl font-bold">Register now!</h1>
-
                 </div>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl rounded-lg">
                     <form onSubmit={handleRegister} className="card-body">
@@ -52,11 +52,9 @@ const Register = () => {
                             <input type={isClicked ? 'text' : 'password'} placeholder="password" name='password' className="input input-bordered rounded-lg " required />
                             <div onClick={() => setIsClicked(!isClicked)} className="absolute hover:cursor-pointer right-4 top-[3.75rem] text-xl">
                                 {
-                                    isClicked ? <AiOutlineEye /> : <AiOutlineEyeInvisible />
+                                    isClicked ? <AiOutlineEyeInvisible /> : <AiOutlineEye />
                                 }
-
                             </div>
-
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary rounded-lg font-bold text-lg">Register</button>
@@ -65,7 +63,6 @@ const Register = () => {
                     <div className="text-center mb-6 px-4">
                         <p className='text-lg'>Already have an account? <Link className="link link-hover" to='/login'>Login Now!</Link></p>
                     </div>
-
                 </div>
             </div>
         </div>
