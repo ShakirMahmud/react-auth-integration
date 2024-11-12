@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../providers/AuthProvider';
 
 const Header = () => {
+
+    const {name} = useContext(AuthContext);
+    console.log(name);
 
     const links = <div className='flex lg:flex-row flex-col lg:gap-6 text-lg font-semibold '>
         <li><NavLink className='rounded-2xl' to='/'>Home</NavLink></li>
@@ -41,7 +45,7 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn rounded-2xl">Button</a>
+                <a className="btn rounded-2xl">{name}</a>
             </div>
         </div>
     );
