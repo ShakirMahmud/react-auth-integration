@@ -20,6 +20,11 @@ const Header = () => {
         <li><NavLink className='rounded-2xl' to='/'>Home</NavLink></li>
         <li><NavLink className='rounded-2xl' to='/login'>Login</NavLink></li>
         <li><NavLink className='rounded-2xl' to='/register'>Register</NavLink></li>
+        {
+            user && <>
+                <li><NavLink className='rounded-2xl' to='/orders'>Orders</NavLink></li>
+                </>
+        }
     </div>
 
     return (
@@ -55,10 +60,10 @@ const Header = () => {
             </div>
             <div className="navbar-end">
                 {
-                    user ? <>
-                        <span>{user.email}</span>
-                        <a onClick={handleSignOut} className='btn'>Sign Out</a>
-                    </> : <Link to='/login'>Login</Link>
+                    user ? <div className='flex gap-6 justify-center items-center'>
+                        <span className='text-xl'>{user.email}</span>
+                        <a onClick={handleSignOut} className='btn rounded-lg'>Sign Out</a>
+                    </div> : <Link to='/login'>Login</Link>
                 }
             </div>
         </div>
