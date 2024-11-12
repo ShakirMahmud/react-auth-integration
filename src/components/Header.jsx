@@ -23,6 +23,7 @@ const Header = () => {
         {
             user && <>
                 <li><NavLink className='rounded-2xl' to='/orders'>Orders</NavLink></li>
+                <li><NavLink className='rounded-2xl' to='/profile'>Profile</NavLink></li>
                 </>
         }
     </div>

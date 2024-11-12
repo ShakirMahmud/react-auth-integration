@@ -1,12 +1,14 @@
 import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from "../providers/AuthProvider";
 
 const Login = () => {
 
-    const { signInUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const { signInUser, signInWithGoogle } = useContext(AuthContext);
     const [isClicked, setIsClicked] = useState(false);
 
     const handleLogin = e => {
@@ -18,9 +20,22 @@ const Login = () => {
         signInUser(email, password)
             .then((result) => {
                 console.log(result.user);
+                e.target.reset();
+                navigate('/orders');
             })
             .catch(error => {
                 console.error('Error signing in:', error.message);
+            });
+    }
+
+    const handleGoogleSignIn = () =>{
+        signInWithGoogle()
+           .then((result) => {
+                console.log(result.user);
+                navigate('/orders');
+            })
+           .catch(error => {
+                console.error('Error signing in with Google:', error.message);
             });
     }
 
@@ -53,11 +68,14 @@ const Login = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary rounded-lg font-bold text-lg">Login</button>
+                            <button className="btn btn-primary rounded-lg font-bold text-lg text-white">Login</button>
                         </div>
                     </form>
                     <div className="text-center mb-6 px-4">
                         <p className='text-lg'>Don't have an account? <Link className="link link-hover" to='/register'>Create Now!</Link></p>
+                    </div>
+                    <div className="w-full flex  justify-center py-6">
+                        <button onClick={handleGoogleSignIn} className="btn btn-ghost bg-base-300 rounded-lg text-lg">Sign In with Google</button>
                     </div>
                 </div>
             </div>
