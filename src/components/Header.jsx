@@ -1,11 +1,20 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 
 const Header = () => {
 
-    const {name} = useContext(AuthContext);
-    // console.log(name);
+    const { user, signOutUser } = useContext(AuthContext);
+
+    const handleSignOut = () => {
+        signOutUser()
+            .then(() => {
+                console.log('Sign out user Successfully')
+            })
+            .catch(err => {
+                console.error('Failed to sign out user:', err.message);
+            })
+    }
 
     const links = <div className='flex lg:flex-row flex-col lg:gap-6 text-lg font-semibold '>
         <li><NavLink className='rounded-2xl' to='/'>Home</NavLink></li>
@@ -45,7 +54,12 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn rounded-2xl">{name}</a>
+                {
+                    user ? <>
+                        <span>{user.email}</span>
+                        <a onClick={handleSignOut} className='btn'>Sign Out</a>
+                    </> : <Link to='/login'>Login</Link>
+                }
             </div>
         </div>
     );
